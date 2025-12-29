@@ -4,28 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/assets/millenium.svg" />
-    <title>Millenium | Мемориальные комплексы</title>
+    <title>Камень-Гим | Мемориальные комплексы</title>
     <meta
       name="description"
       content="Изготовление памятников и мемориальных комплексов полного цикла. Индивидуальный подход, собственное производство и современные технологии."
     />
-    <script type="module" crossorigin src="/assets/index-BVHg2THk.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DvV-6VRU.css">
+    <script type="module" crossorigin src="/assets/index-BXuYi096.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-N-pudC-v.css">
   </head>
   <body class="bg-[#0c0e13] text-dark-lava">
-    <div x-data="{ navOpen: false, menu: null }" class="min-h-screen flex flex-col">
+    <div x-data="{ navOpen: false, menu: null, mobileCatalog: false, mobileComplex: false, mobileProducts: false }" class="min-h-screen flex flex-col">
       <header class="fixed top-0 left-0 w-full z-30 border-b border-white/10 bg-[#0d111a]/70 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 md:h-20 flex items-center gap-4">
-            <a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <img src="/assets/millenium.svg" alt="Millenium" class="h-7 w-auto md:h-8 logo-white" />
-            <span class="text-base md:text-lg tracking-[0.16em] uppercase">Millenium</span>
+          <a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <img src="/assets/millenium.svg" alt="Камень-Гим" class="h-7 w-auto md:h-8 logo-white" />
+            <span class="text-base md:text-lg tracking-[0.16em] uppercase">Камень-Гим</span>
           </a>
           <nav class="hidden md:flex flex-1 text-xs uppercase tracking-[0.16em] justify-center">
             <div class="flex items-center gap-6">
               <div class="relative menu-bridge"
                    @mouseenter="menu='pamyatniki'"
                    @mouseleave="menu=null">
-                <a href="#catalog" class="hover:text-black whitespace-nowrap">Памятники</a>
+              <a href="#catalog" class="hover:text-black whitespace-nowrap">Памятники</a>
                 <div
                   x-show="menu==='pamyatniki'"
                   x-transition:enter="transition ease-out duration-150"
@@ -62,12 +62,12 @@
                 </div>
               </div>
 
-              <a href="#works" class="hover:text-black whitespace-normal leading-tight text-center">Выполненные<br />работы</a>
+                <a href="/works.html" class="hover:text-black whitespace-normal leading-tight text-center">Выполненные<br />работы</a>
 
               <div class="relative menu-bridge"
                    @mouseenter="menu='products'"
                    @mouseleave="menu=null">
-                <a href="#products" class="hover:text-black whitespace-nowrap">Товары</a>
+              <a href="#products" class="hover:text-black whitespace-nowrap">Товары</a>
                 <div
                   x-show="menu==='products'"
                   x-transition:enter="transition ease-out duration-150"
@@ -115,10 +115,37 @@
           x-transition
           class="md:hidden bg-[#0f1420] border-t border-white/10 px-4 py-4 space-y-3 text-sm uppercase tracking-[0.14em]"
         >
-          <a href="#catalog" class="block" @click="navOpen = false">Памятники</a>
-          <a href="#catalog" class="block" @click="navOpen = false">Мемориальные комплексы</a>
-          <a href="#works" class="block" @click="navOpen = false">Выполненные работы</a>
-          <a href="#products" class="block" @click="navOpen = false">Товары</a>
+          <div class="space-y-2">
+            <button type="button" class="w-full text-left" @click="mobileCatalog = !mobileCatalog">Памятники</button>
+            <div class="pl-3 space-y-2" x-show="mobileCatalog" x-transition>
+              <a href="/gallery.html?type=simple" class="block">Простые памятники</a>
+              <a href="/gallery.html?type=combo" class="block">Комбинированные памятники</a>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <button type="button" class="w-full text-left" @click="mobileComplex = !mobileComplex">Мемориальные комплексы</button>
+            <div class="pl-3 space-y-2" x-show="mobileComplex" x-transition>
+              <a href="/gallery.html?type=complex" class="block">Мемориальные комплексы</a>
+              <a href="/gallery.html?type=svo" class="block">СВО мемориальные комплексы</a>
+              <a href="/gallery.html?type=exclusive" class="block">Эксклюзивные мемориальные комплексы</a>
+              <a href="/gallery.html?type=premium" class="block">Премиальные решения</a>
+            </div>
+          </div>
+          <a href="/works.html" class="block" @click="navOpen = false">Выполненные работы</a>
+          <div class="space-y-2">
+            <button type="button" class="w-full text-left" @click="mobileProducts = !mobileProducts">Товары</button>
+            <div class="pl-3 space-y-2" x-show="mobileProducts" x-transition>
+              <a href="/gallery.html?type=fence" class="block">Ограды</a>
+              <a href="/gallery.html?type=vases" class="block">Вазы и лампады</a>
+              <a href="/gallery.html?type=angels" class="block">Ангелы и скульптуры</a>
+              <a href="/gallery.html?type=curb" class="block">Цоколь</a>
+              <a href="/gallery.html?type=stone" class="block">Столы и лавочки из камня</a>
+              <a href="/gallery.html?type=metal" class="block">Столы и лавочки металлические</a>
+              <a href="/gallery.html?type=tile" class="block">Плитка и брусчатка</a>
+              <a href="/gallery.html?type=gravel" class="block">Крошка и щебень</a>
+              <a href="/gallery.html?type=photo" class="block">Фото на стекле и керамика</a>
+            </div>
+          </div>
           <a href="#about" class="block" @click="navOpen = false">О нас</a>
           <a href="#blog" class="block" @click="navOpen = false">Материалы</a>
           <a href="#contacts" class="block" @click="navOpen = false">Контакты</a>
@@ -310,84 +337,123 @@
               </p>
             </div>
             <div class="mt-10 grid grid-cols-2 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              <div class="group overflow-hidden surface shadow-soft soft-card reveal" style="--d:0s">
-                <div class="relative w-full h-48 sm:h-56 overflow-hidden">
-                  <img
-                    src="/assets/pamyatniki/№13.jpg"
-                    alt="Позиция 1"
-                    class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
-                  />
-                </div>
-                <div class="p-5 space-y-2">
-                  <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-1</h3>
-                  <p class="text-sm leading-relaxed">Памятник Габбро-Диабаз с Ангелом на овальной структуре.</p>
-                </div>
-              </div>
-              <div class="group overflow-hidden surface shadow-soft soft-card reveal" style="--d:0.05s">
-                <div class="relative w-full h-48 sm:h-56 overflow-hidden">
-                  <img
-                    src="/assets/pamyatniki/№14.jpg"
-                    alt="Позиция 2"
-                    class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
-                  />
-                </div>
-                <div class="p-5 space-y-2">
-                  <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-2</h3>
-                  <p class="text-sm leading-relaxed">Памятник Габбро-Диабаз с Ангелом и Крестом.</p>
-                </div>
-              </div>
-              <div class="group overflow-hidden surface shadow-soft soft-card reveal" style="--d:0.1s">
-                <div class="relative w-full h-48 sm:h-56 overflow-hidden">
-                  <img
-                    src="/assets/pamyatniki/№15.jpg"
-                    alt="Позиция 3"
-                    class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
-                  />
-                </div>
-                <div class="p-5 space-y-2">
-                  <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-3</h3>
-                  <p class="text-sm leading-relaxed">Памятник Габбро-Диабаз с Ангелом.</p>
-                </div>
-              </div>
-              <div class="group overflow-hidden surface shadow-soft soft-card reveal" style="--d:0.15s">
-                <div class="relative w-full h-48 sm:h-56 overflow-hidden">
-                  <img
-                    src="/assets/pamyatniki/№16.jpg"
-                    alt="Позиция 4"
-                    class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
-                  />
-                </div>
-                <div class="p-5 space-y-2">
-                  <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-4</h3>
-                  <p class="text-sm leading-relaxed">Памятник Габбро-Диабаз с Ангелом.</p>
-                </div>
-              </div>
-              <div class="group overflow-hidden surface shadow-soft soft-card reveal" style="--d:0.2s">
-                <div class="relative w-full h-48 sm:h-56 overflow-hidden">
-                  <img
-                    src="/assets/pamyatniki/№17.jpg"
-                    alt="Позиция 5"
-                    class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
-                  />
-                </div>
-                <div class="p-5 space-y-2">
-                  <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-5</h3>
-                  <p class="text-sm leading-relaxed">Памятник Габбро-Диабаз с Ангелом и большим Крестом.</p>
-                </div>
-              </div>
-              <div class="group overflow-hidden surface shadow-soft soft-card reveal" style="--d:0.25s">
-                <div class="relative w-full h-48 sm:h-56 overflow-hidden">
-                  <img
-                    src="/assets/pamyatniki/№18.jpg"
-                    alt="Позиция 6"
-                    class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
-                  />
-                </div>
-                <div class="p-5 space-y-2">
-                  <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-6</h3>
-                  <p class="text-sm leading-relaxed">Памятник Габбро-Диабаз с Ангелом на сердце.</p>
-                </div>
-              </div>
+                <a href="/assets/popular/IMG_6455.jpg" target="_blank" rel="noreferrer" class="group overflow-hidden surface shadow-soft soft-card reveal block" style="--d:0s">
+                  <div class="relative w-full h-48 sm:h-56 overflow-hidden">
+                    <img
+                      src="/assets/popular/IMG_6455.jpg"
+                      alt="Позиция 1"
+                      class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
+                    />
+                  </div>
+                  <div class="p-5 space-y-2">
+                    <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-1</h3>
+                    <p class="text-sm leading-relaxed">Памятник Габбро-Диабаз с Ангелом на овальной структуре.</p>
+                  </div>
+                </a>
+                <a href="/assets/popular/IMG_6424.jpg" target="_blank" rel="noreferrer" class="group overflow-hidden surface shadow-soft soft-card reveal block" style="--d:0.05s">
+                  <div class="relative w-full h-48 sm:h-56 overflow-hidden">
+                    <img
+                      src="/assets/popular/IMG_6424.jpg"
+                      alt="Позиция 2"
+                      class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
+                    />
+                  </div>
+                  <div class="p-5 space-y-2">
+                    <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-2</h3>
+                    <p class="text-sm leading-relaxed">Памятник Габбро-Диабаз с Ангелом и Крестом.</p>
+                  </div>
+                </a>
+                <a href="/assets/popular/IMG_6413.jpg" target="_blank" rel="noreferrer" class="group overflow-hidden surface shadow-soft soft-card reveal block" style="--d:0.1s">
+                  <div class="relative w-full h-48 sm:h-56 overflow-hidden">
+                    <img
+                      src="/assets/popular/IMG_6413.jpg"
+                      alt="Позиция 3"
+                      class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
+                    />
+                  </div>
+                  <div class="p-5 space-y-2">
+                    <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-3</h3>
+                    <p class="text-sm leading-relaxed">Памятник Габбро-Диабаз с Ангелом.</p>
+                  </div>
+                </a>
+                <a href="/assets/popular/IMG_6422.jpg" target="_blank" rel="noreferrer" class="group overflow-hidden surface shadow-soft soft-card reveal block" style="--d:0.15s">
+                  <div class="relative w-full h-48 sm:h-56 overflow-hidden">
+                    <img
+                      src="/assets/popular/IMG_6422.jpg"
+                      alt="Позиция 4"
+                      class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
+                    />
+                  </div>
+                  <div class="p-5 space-y-2">
+                    <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-4</h3>
+                    <p class="text-sm leading-relaxed">Памятник Габбро-Диабаз с Ангелом.</p>
+                  </div>
+                </a>
+                <a href="/assets/popular/IMG_6456.jpg" target="_blank" rel="noreferrer" class="group overflow-hidden surface shadow-soft soft-card reveal block" style="--d:0.2s">
+                  <div class="relative w-full h-48 sm:h-56 overflow-hidden">
+                    <img
+                      src="/assets/popular/IMG_6456.jpg"
+                      alt="Позиция 5"
+                      class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
+                    />
+                  </div>
+                  <div class="p-5 space-y-2">
+                    <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-5</h3>
+                    <p class="text-sm leading-relaxed">Памятник Габбро-Диабаз с Ангелом и большим Крестом.</p>
+                  </div>
+                </a>
+                <a href="/assets/popular/№6328.jpg" target="_blank" rel="noreferrer" class="group overflow-hidden surface shadow-soft soft-card reveal block" style="--d:0.25s">
+                  <div class="relative w-full h-48 sm:h-56 overflow-hidden">
+                    <img
+                      src="/assets/popular/№6328.jpg"
+                      alt="Позиция 6"
+                      class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
+                    />
+                  </div>
+                  <div class="p-5 space-y-2">
+                    <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-6</h3>
+                    <p class="text-sm leading-relaxed">Памятник Габбро-Диабаз с Ангелом на сердце.</p>
+                  </div>
+                </a>
+                <a href="/assets/popular/№7..jfif" target="_blank" rel="noreferrer" class="group overflow-hidden surface shadow-soft soft-card reveal block" style="--d:0.3s">
+                  <div class="relative w-full h-48 sm:h-56 overflow-hidden">
+                    <img
+                      src="/assets/popular/№7..jfif"
+                      alt="Позиция 7"
+                      class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
+                    />
+                  </div>
+                  <div class="p-5 space-y-2">
+                    <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-7</h3>
+                    <p class="text-sm leading-relaxed">Популярная модель.</p>
+                  </div>
+                </a>
+                <a href="/assets/popular/№75.png" target="_blank" rel="noreferrer" class="group overflow-hidden surface shadow-soft soft-card reveal block" style="--d:0.35s">
+                  <div class="relative w-full h-48 sm:h-56 overflow-hidden">
+                    <img
+                      src="/assets/popular/№75.png"
+                      alt="Позиция 8"
+                      class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-110"
+                    />
+                  </div>
+                  <div class="p-5 space-y-2">
+                    <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-8</h3>
+                    <p class="text-sm leading-relaxed">Популярная модель.</p>
+                  </div>
+                </a>
+                <a href="/assets/popular/№101.jpg" target="_blank" rel="noreferrer" class="group overflow-hidden surface shadow-soft soft-card reveal block" style="--d:0.4s">
+                  <div class="relative w-full h-48 sm:h-56 overflow-hidden bg-white">
+                    <img
+                      src="/assets/popular/№101.jpg"
+                      alt="Позиция 9"
+                      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                    />
+                  </div>
+                  <div class="p-5 space-y-2">
+                    <h3 class="text-lg uppercase tracking-[0.12em]">Памятник П-9</h3>
+                    <p class="text-sm leading-relaxed">Популярная модель.</p>
+                  </div>
+                </a>
             </div>
           </div>
         </section>
@@ -399,7 +465,7 @@
               <h2 class="section-title mt-4">Индивидуальный подход к каждому проекту</h2>
               <div class="space-y-4 section-subtitle">
                 <p>
-                  Мемориальная компания Millenium — производитель мемориальной продукции, специализирующийся на
+                  Мемориальная компания Камень-Гим — производитель мемориальной продукции, специализирующийся на
                   изготовлении и установке памятников и мемориальных комплексов из гранита и мрамора.
                 </p>
                 <p>
@@ -559,7 +625,7 @@
                     <h3 class="uppercase tracking-[0.12em] mb-3 text-sm">Оформление разрешительной документации</h3>
                     <div class="text-sm leading-relaxed space-y-3">
                       <p>
-                        В МЕМОРИАЛЬНОЙ КОМПАНИИ Millenium мы осознаем всю деликатность и сложность процесса оформления
+                        В МЕМОРИАЛЬНОЙ КОМПАНИИ Камень-Гим мы осознаем всю деликатность и сложность процесса оформления
                         разрешительной документации на установку памятника. Поэтому мы берем на себя все хлопоты, связанные
                         с получением необходимых разрешений, избавляя вас от бюрократической волокиты и экономя ваше
                         драгоценное время.
@@ -954,7 +1020,7 @@
                 </div>
                 <div class="flex items-center gap-2">
                   <span class="tracking-[0.12em] uppercase">Email:</span>
-                  <a href="mailto:millenium-msk@bk.ru" class="hover:text-black">millenium-msk@bk.ru</a>
+                  <a href="mailto:kamen-gim@bk.ru" class="hover:text-black">kamen-gim@bk.ru</a>
                 </div>
                 <p>Готовы встретиться на площадке, привезти образцы камня и показать портфолио.</p>
               </div>
@@ -991,7 +1057,7 @@
                 <p class="text-xs text-white/80">
                   Нажимая «Отправить», вы соглашаетесь с политикой конфиденциальности и обработкой персональных данных.
                 </p>
-                <button type="button" class="btn-primary w-full justify-center">Отправить</button>
+                <button type="submit" class="btn-primary w-full justify-center">Отправить</button>
               </form>
             </div>
           </div>
@@ -1001,9 +1067,9 @@
       <footer class="bg-black text-american-silver py-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-start md:items-center gap-6">
           <div class="flex items-center gap-3">
-            <img src="/assets/millenium.svg" alt="Millenium" class="h-10 w-auto" />
+            <img src="/assets/millenium.svg" alt="Камень-Гим" class="h-10 w-auto" />
             <div>
-              <p class="uppercase tracking-[0.16em]">Millenium</p>
+              <p class="uppercase tracking-[0.16em]">Камень-Гим</p>
               <p class="text-sm text-american-silver/80 mt-1">Памятники и мемориальные комплексы полного цикла.</p>
             </div>
           </div>
@@ -1026,5 +1092,83 @@
       </footer>
     </div>
 
+      <div class="floating-actions" aria-label="Быстрые контакты">
+        <a href="tel:+79273807158" aria-label="Позвонить">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l1.96-1.96a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.3 22 2 13.7 2 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.01l-1.96 1.96Z"
+            />
+          </svg>
+        </a>
+        <a href="https://web.telegram.org/k/#@millenium58" target="_blank" rel="noreferrer" aria-label="Telegram">
+          <img src="/assets/telegram.svg" alt="Telegram" style="width:22px;height:22px" />
+        </a>
+      </div>
+
+      <div id="form-toast" class="form-toast" aria-live="polite" role="status">
+        <div class="form-toast__card">
+          <h3 class="form-toast__title" id="form-toast-title">Готово</h3>
+          <p class="form-toast__text" id="form-toast-text">Сообщение отправлено.</p>
+          <button class="form-toast__btn" type="button" id="form-toast-close">Хорошо</button>
+        </div>
+      </div>
+
+      <script>
+        // Отправка формы Контактов через защищённый бэкенд (без токена на фронте)
+        document.addEventListener('DOMContentLoaded', () => {
+          const form = document.querySelector('#contacts form');
+          if (!form) return;
+
+          // Настройте на хостинге переменную CONTACT_ENDPOINT, указывающую на серверный обработчик,
+          // который отправит сообщение в Telegram, используя секреты из .env.
+          const URL = window.CONTACT_ENDPOINT || '/api/contact';
+
+          const toast = document.getElementById('form-toast');
+          const toastTitle = document.getElementById('form-toast-title');
+          const toastText = document.getElementById('form-toast-text');
+          const toastClose = document.getElementById('form-toast-close');
+
+          const showToast = (title, text, isError = false) => {
+            if (!toast) return;
+            toast.classList.toggle('form-toast--error', isError);
+            toastTitle.textContent = title;
+            toastText.textContent = text;
+            toast.classList.add('show');
+          };
+          const hideToast = () => toast?.classList.remove('show');
+          toastClose?.addEventListener('click', hideToast);
+          toast?.addEventListener('click', (e) => {
+            if (e.target === toast) hideToast();
+          });
+
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = form.elements.name?.value?.trim() || '—';
+            const phone = form.elements.phone?.value?.trim() || '—';
+            const comment = form.elements.comment?.value?.trim() || '—';
+
+            const text = [
+              'Новая заявка с формы "Контакты"',
+              `Имя: ${name}`,
+              `Телефон: ${phone}`,
+              `Комментарий: ${comment}`,
+              `Страница: ${window.location.href}`
+            ].join('\n');
+
+            try {
+              const res = await fetch(URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, phone, comment, page: window.location.href })
+              });
+              if (!res.ok) throw new Error('telegram error');
+              showToast('Готово', 'Заявка отправлена, мы свяжемся с вами.');
+              form.reset();
+            } catch (err) {
+              showToast('Ошибка', 'Не удалось отправить заявку. Попробуйте позже.', true);
+            }
+          });
+        });
+      </script>
   </body>
 </html>

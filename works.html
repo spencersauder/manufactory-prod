@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Выполненные работы | Камень-Гим</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/millenium.svg" />
+    <style>
+      :root {
+        --bg: #090809;
+        --surface: #111016;
+        --surface-soft: #161417;
+        --text: #eceff3;
+        --muted: #b3b6c2;
+        --accent: #f3c978;
+        --border: rgba(255, 255, 255, 0.14);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Jun", "Times New Roman", serif;
+        background: linear-gradient(180deg, #090809 0%, #111016 60%, #090809 100%);
+        color: var(--text);
+      }
+      header {
+        padding: 20px 16px 8px;
+        text-align: center;
+      }
+      .section-title {
+        margin: 12px 0 4px;
+        font-size: 24px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .badge-soft {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 14px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 12px;
+        background: rgba(243, 201, 120, 0.12);
+        color: var(--accent);
+        border: 1px solid rgba(243, 201, 120, 0.3);
+        margin-bottom: 10px;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 16px 48px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 18px;
+        margin-top: 26px;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.26);
+        overflow: hidden;
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 0.2s ease;
+        cursor: pointer;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(243, 201, 120, 0.5);
+        box-shadow: 0 18px 48px rgba(243, 201, 120, 0.18);
+      }
+      .card-img {
+        position: relative;
+        width: 100%;
+        padding-top: 70%;
+        background: #fff;
+      }
+      .card-img img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+        background: #fff;
+      }
+      .card:hover .card-img img {
+        transform: scale(1.05);
+      }
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--muted);
+        justify-content: center;
+      }
+      .breadcrumb a {
+        color: var(--muted);
+        text-decoration: none;
+        letter-spacing: 0.06em;
+      }
+      .breadcrumb a:hover {
+        color: var(--accent);
+      }
+      .back {
+        margin-top: 16px;
+      }
+      .back a {
+        color: var(--accent);
+        text-decoration: none;
+        letter-spacing: 0.08em;
+      }
+      .floating-actions {
+        position: fixed;
+        right: 18px;
+        bottom: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 60;
+      }
+      .floating-actions a {
+        width: 54px;
+        height: 54px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        background: var(--accent);
+        color: #0c0c0e;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      }
+      .floating-actions a:hover {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.4);
+        filter: brightness(0.96);
+      }
+      .floating-actions svg {
+        width: 22px;
+        height: 22px;
+        fill: currentColor;
+      }
+
+      @media (max-width: 640px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(140px, 1fr));
+          gap: 12px;
+        }
+        .card-img {
+          padding-top: 68%;
+        }
+      }
+
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 20px;
+      }
+      .lightbox-content {
+        position: relative;
+        max-width: 90vw;
+        max-height: 90vh;
+      }
+      .lightbox img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: var(--surface);
+        color: var(--text);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+      }
+      .scroll-to-top-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--surface);
+        color: var(--text);
+        border: 1px solid var(--border);
+        padding: 10px 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="container">
+      <nav class="breadcrumb">
+        <a href="/">Главная</a>
+        <span>/</span>
+        <span>Выполненные работы</span>
+      </nav>
+      <div class="badge-soft">Выполненные работы</div>
+      <h2 class="section-title">Галерея</h2>
+      <div class="back"><a href="/#works">← Вернуться на главную</a></div>
+    </header>
+    <main class="container">
+      <div id="grid" class="grid"></div>
+      <button id="scrollToTopBtn" class="scroll-to-top-btn">↑ Вверх</button>
+    </main>
+
+    <div id="lightbox" class="lightbox" style="display: none;">
+      <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="" />
+        <button class="lightbox-close">Закрыть</button>
+      </div>
+    </div>
+
+      <div class="floating-actions" aria-label="Быстрые контакты">
+        <a href="tel:+79273807158" aria-label="Позвонить">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l1.96-1.96a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.3 22 2 13.7 2 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.01l-1.96 1.96Z"
+            />
+          </svg>
+        </a>
+        <a href="https://web.telegram.org/k/#@millenium58" target="_blank" rel="noreferrer" aria-label="Telegram">
+          <img src="/assets/telegram.svg" alt="Telegram" style="width:22px;height:22px" />
+        </a>
+      </div>
+
+    <script>
+      const images = [
+        '147c7dba-846b-4d8b-8d1f-c4ba856503e1.JPG',
+        '15.JPG',
+        '16.JPG',
+        '17.JPG',
+        '18.JPG',
+        '1.JPG',
+        '20.JPG',
+        '2766f6e8-6d7b-4842-94f8-4c57db43820a.JPG',
+        '2.JPG',
+        '3.jpg',
+        '4a527c31-1e23-4cf1-968d-7386e6fb18f7.JPG',
+        '4.JPG',
+        '5.JPG',
+        '603d8d70-22ef-4d96-908d-2e30e3e689d2.JPG',
+        '688166bd-a814-44fc-a4d4-a8a16b05e427.JPG',
+        '6.JPG',
+        '7a9a810f-2806-4a26-a277-744c2a757f76.jpg',
+        '7.JPG',
+        '8.jpg',
+        'a1797bfc-36ca-4302-800f-73d39f9c4b35.JPG',
+        'b14b1c09-fd46-4ae9-a171-032e84b1028d.JPG',
+        'bc832b7e-6fe9-417b-8895-139d830fffed.JPG',
+        'bdf81592-1043-4eb0-b1f8-395ffbc8ce30.JPG',
+        'c36fb162-602e-41b0-b14d-be323769eb36.JPG',
+        'c9ce856f-7d5d-4572-a980-e1b88792e729.JPG',
+        'CB2397A8-B8C3-4F14-8E05-01912EE1A566.JPG',
+        'd3b4fbd7-f922-444f-a9bb-b9f35416d537.JPG',
+        'd484e0b0-1f2b-4287-875f-032a94caee26.JPG',
+        'e059156c-7c32-4819-80c5-3b0d62487806.JPG',
+        'IMG_0335.jpeg',
+        'IMG_0374.jpeg',
+        'IMG_0379.jpeg',
+        'IMG_0405.jpeg',
+        'IMG_0598.jpeg',
+        'IMG_0599.jpeg',
+        'IMG_0600.jpeg',
+        'IMG_0611.jpeg',
+        'IMG_0765.jpeg',
+        'IMG_0884.jpeg',
+        'IMG_0888.jpeg',
+        'IMG_1344.jpeg',
+        'IMG_1738.jpeg',
+        'IMG_3382.jpeg',
+        'IMG_4476.jpeg',
+        'IMG_5495.jpeg',
+        'IMG_5516.jpeg',
+        'IMG_6715.jpeg',
+        'IMG_6722.jpeg',
+        'IMG_6888.jpeg',
+        'IMG_7101.jpg',
+        'IMG_7230.jpeg',
+        'IMG_7242.jpeg',
+        'IMG_7259.jpeg',
+        'IMG_7283.jpeg',
+        'IMG_7290.jpeg',
+        'IMG_7292.jpeg',
+        'IMG_7414.jpeg',
+        'IMG_7417.jpeg',
+        'IMG_7494.jpeg',
+        'IMG_7538.jpeg',
+        'IMG_8511.jpeg',
+        'IMG_8816.jpeg',
+        'IMG_9296.jpeg'
+      ];
+
+      const grid = document.getElementById('grid');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+      const openLightbox = (src) => {
+        lightboxImg.src = src;
+        lightbox.style.display = 'flex';
+      };
+
+      const closeLightbox = () => {
+        lightbox.style.display = 'none';
+        lightboxImg.src = '';
+      };
+
+      images.forEach((img) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-img">
+            <img src="/assets/works/${img}" alt="Выполненная работа" loading="lazy" />
+          </div>
+        `;
+        card.addEventListener('click', () => openLightbox(`/assets/works/${img}`));
+        grid.appendChild(card);
+      });
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+          closeLightbox();
+        }
+      });
+
+      scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    </script>
+  </body>
+</html>
+

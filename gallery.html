@@ -196,6 +196,36 @@
         text-decoration: none;
         letter-spacing: 0.08em;
       }
+      .floating-actions {
+        position: fixed;
+        right: 18px;
+        bottom: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 60;
+      }
+      .floating-actions a {
+        width: 54px;
+        height: 54px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        background: var(--accent);
+        color: #0c0c0e;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      }
+      .floating-actions a:hover {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.4);
+        filter: brightness(0.96);
+      }
+      .floating-actions svg {
+        width: 22px;
+        height: 22px;
+        fill: currentColor;
+      }
 
       @media (max-width: 640px) {
         .grid {
@@ -279,6 +309,18 @@
       <button class="lightbox-close" id="lightbox-close">Закрыть</button>
       <img id="lightbox-img" src="" alt="Просмотр" />
     </div>
+    <div class="floating-actions" aria-label="Быстрые контакты">
+      <a href="tel:+79273807158" aria-label="Позвонить">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l1.96-1.96a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1C10.3 22 2 13.7 2 3a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.24 1.01l-1.96 1.96Z"
+          />
+        </svg>
+      </a>
+      <a href="https://web.telegram.org/k/#@millenium58" target="_blank" rel="noreferrer" aria-label="Telegram">
+        <img src="/assets/telegram.svg" alt="Telegram" style="width:22px;height:22px" />
+      </a>
+    </div>
 
     <script>
       const data = {
@@ -350,10 +392,6 @@
           subtitle: 'Надёжные столешницы и лавочки под ваш комплекс',
           dir: '/assets/catalog/stone/',
           items: [
-            'image-17-07-25-10-08-1-300x300.webp',
-            'image-17-07-25-10-08-2-300x300.webp',
-            'image-17-07-25-10-08-300x300.webp',
-            'image-17-07-25-10-08-3-300x300.webp',
             's10-600x600.jpg',
             's3-600x600.jpg',
             's4-600x600.jpg',
